@@ -50,6 +50,7 @@ class Neuron():
         """
         pick it up, pick it up OOOOH baby gurl watch how i moooove
         """
+        print(len(self.in_value), len(self.weights))
         if not self.walk_it_like_i_talk_it():
             print("invalid node")
             return None

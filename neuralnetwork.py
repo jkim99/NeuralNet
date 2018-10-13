@@ -29,16 +29,23 @@ class NeuralNetwork():
                                                   weights=kwargs['inputs'],
                                                   biases=kwargs['inputs']))
 
-    def start(self, inputs):
+    def forward_propogate(self, inputs, layer):
         """
         starts neuralnetwork. duh
         """
-        for i in range(1, len(self.neurons) - 1):
-            for j in range(0, len(self.neurons[i - 1]) - 1):
-                self.neuron[i - 1][j].reel_it_in(inputs)
-                self.neuron[i - 1][j].pick_it_up()
-            for j in range(0, len(self.neurons[i]) - 1):
-                self.neuron[i][j].
+        for j in range(0, len(self.neurons[0])):
+            self.neurons[layer][j].reel_it_in(inputs)
+            self.neurons[layer][j].pick_it_up()
+
+    def start(self, inputs):
+        """
+        POP THAT GOLD (GOLD). COLLAD GREENS
+        """
+        for i in range(0, len(self.neurons) - 1):
+            self.forward_propogate(inputs, i)
+            for j in range(0, len(self.neurons[i])):
+                inputs.append(self.neurons[i][j].out_value)
+            inputs = []
 
     def status(self):
         """
