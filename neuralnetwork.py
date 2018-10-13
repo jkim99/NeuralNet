@@ -26,10 +26,15 @@ class NeuralNetwork():
         for i in range(0, outputs):
             self.neurons['output'].append(Neuron())
 
-    def start():
+    def start(self, inputs):
         """
         starts neuralnetwork. duh
         """
+        for i in range(0, len(inputs)):
+            self.neurons['input'][i].reel_it_in(i, inputs[i])
+        for layer in self.neurons:
+            for neuron in layer:
+                neuron.pick_it_up()
 
 
 def main():

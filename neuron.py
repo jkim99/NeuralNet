@@ -1,4 +1,5 @@
 import math
+from random import random
 
 
 def sigmoid(x):
@@ -10,6 +11,8 @@ def sigmoid(x):
 class Neuron():
     def __init__(self):
         self.weights = []
+        for i in range(0, len(self.weights)):
+            self.weights[i] = random()
         self.in_value = []
         self.out_value = 0
 
