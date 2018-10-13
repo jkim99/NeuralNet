@@ -18,28 +18,33 @@ class NeuralNetwork():
         DID SOMEONE SAY DICTIONARY COMPREHENSION?????
         Lmao jk jk it's not that bad.
         """
-        self.neurons = {}
-        self.neurons['input'] = []
-        self.neurons['output'] = []
+        self.neurons = []
+        for i in range(0, kwargs['layers']):
+            self.neurons.append([])
         for i in range(0, kwargs['inputs']):
-            self.neurons['input'].append(Neuron())
-        for i in range(0, kwargs['outputs']):
-            self.neurons['output'].append(Neuron())
+            self.neurons[0].append(Neuron(weights=kwargs['inputs'],
+                                          biases=kwargs['inputs']))
+        for i in range(0, kwargs['outputs'] - 1):
+            self.neurons[kwargs['layers'] - 1].append(Neuron(
+                                                  weights=kwargs['inputs'],
+                                                  biases=kwargs['inputs']))
 
     def start(self, inputs):
         """
         starts neuralnetwork. duh
         """
-        for i in range(0, len(inputs)):
-            self.neurons['input'][i].reel_it_in(inputs)
-        for layer in self.neurons:
-            for neuron in self.neurons[layer]:
-                neuron.pick_it_up()
+        for i in range(0, len(self.neurons) - 1):
+            totals = []
+            for j in range(0, len(self.neurons[i])):
+                n = self.neurons[i][j]
+                n.reel_it_in(inputs)
+                n.pick_it_up()
+                totals[j] += n.out_value
 
     def status(self):
         status = ''
         for layer in self.neurons:
-            for n in layer:
+            for n in self.neurons[layer]:
                 status += n.status()
         return status
 
@@ -48,10 +53,10 @@ def main():
     """
     totally not the main method
     """
-    inputs = [3, 2, 6, 7]
-    neuralnet = NeuralNetwork(inputs=4, outputs=10)
+    inputs = [0.3, 0.2, 0.6, 0.7]
+    neuralnet = NeuralNetwork(inputs=4, layers=3, outputs=3)
     neuralnet.start(inputs)
-    print(neuralnet.status())
+    # print(neuralnet.status())
 
 
 if __name__ == '__main__':
