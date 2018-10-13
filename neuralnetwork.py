@@ -33,7 +33,7 @@ class NeuralNetwork():
         """
         starts neuralnetwork. duh
         """
-        for j in range(0, len(self.neurons[0])):
+        for j in range(0, len(self.neurons[layer])):
             self.neurons[layer][j].reel_it_in(inputs)
             self.neurons[layer][j].pick_it_up()
 
@@ -69,7 +69,7 @@ def main():
     totally not the main method
     """
     inputs = [0.3, 0.2, 0.6, 0.7]
-    neuralnet = NeuralNetwork(inputs=4, layers=3, outputs=3)
+    neuralnet = NeuralNetwork(inputs=4, layers=2, outputs=3)
     neuralnet.start(inputs)
     print(neuralnet.status())
 
