@@ -33,20 +33,28 @@ class NeuralNetwork():
         """
         starts neuralnetwork. duh
         """
-        for i in range(0, len(self.neurons) - 1):
-            totals = []
-            for j in range(0, len(self.neurons[i])):
-                n = self.neurons[i][j]
-                n.reel_it_in(inputs)
-                n.pick_it_up()
-                totals[j] += n.out_value
+        for i in range(1, len(self.neurons) - 1):
+            for j in range(0, len(self.neurons[i - 1]) - 1):
+                self.neuron[i - 1][j].reel_it_in(inputs)
+                self.neuron[i - 1][j].pick_it_up()
+            for j in range(0, len(self.neurons[i]) - 1):
+                self.neuron[i][j].
 
     def status(self):
+        """
+        checks the status of the neural network
+        """
         status = ''
-        for layer in self.neurons:
-            for n in self.neurons[layer]:
+        for i in range(0, len(self.neurons)):
+            for j in range(0, len(self.neurons[i])):
+                n = self.neurons[i][j]
                 status += n.status()
         return status
+
+    def back_propergate(self):
+        """
+        hi jeff
+        """
 
 
 def main():
@@ -56,7 +64,7 @@ def main():
     inputs = [0.3, 0.2, 0.6, 0.7]
     neuralnet = NeuralNetwork(inputs=4, layers=3, outputs=3)
     neuralnet.start(inputs)
-    # print(neuralnet.status())
+    print(neuralnet.status())
 
 
 if __name__ == '__main__':

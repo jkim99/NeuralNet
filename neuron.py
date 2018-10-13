@@ -1,11 +1,22 @@
+"""
+Author: Just Jonathan and no one else
+"""
 import math
 import random
 
 
 def sigmoid(x):
     """
+    some bullshit math or something idk ask Jeff
     """
     return 1 / (1 + math.exp(-x))
+
+
+def sigmoid_prime(x):
+    """
+    the derivative of that ^^^ function
+    """
+    return sigmoid(x) * (1 - sigmoid(x))
 
 
 class Neuron():
@@ -54,7 +65,4 @@ class Neuron():
         return len(self.weights) == len(self.biases)
 
     def status(self):
-        inputs = ''
-        for i in self.in_value:
-            inputs += '        ' + str(i) + '\n'
-        return 'inputs: \n' + inputs
+        return 'outputs:' + str(self.out_value) + '\n'
